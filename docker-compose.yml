@@ -1,7 +1,7 @@
 version: '2.2'
 services:
   torbridge:
-    image: chrisbensch/docker-tor
+    image: chrisbensch/docker-tor-arm
     init: true
     restart: always
     network_mode: host
