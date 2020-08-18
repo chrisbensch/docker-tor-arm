@@ -1,0 +1,32 @@
+##=================== /etc/torrc =====================##
+# see /usr/local/etc/tor/torrc.sample and https://www.torproject.org/docs/tor-manual.html.en
+
+# Run Tor as a regular user (do not change this)
+User tord
+DataDirectory /var/lib/tor
+
+# Server's public IP Address (usually automatic)
+#Address 10.10.10.10
+
+# Port to advertise for incoming Tor connections.
+ORPort 8373                  # common ports are 9001, 443
+#ORPort [IPv6-address]:9001
+
+
+# Set limits
+AccountingMax 30 GB
+RelayBandwidthRate 512 KB   # Throttle traffic to
+RelayBandwidthBurst 1024 KB # But allow bursts up to
+MaxMemInQueues 512 MB       # Limit Memory usage to
+
+## Run Tor as obfuscated bridge
+# https://trac.torproject.org/projects/tor/wiki/doc/PluggableTransports/obfs4proxy
+ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
+ServerTransportListenAddr obfs4  0.0.0.0:7262
+ExtORPort auto
+BridgeRelay 1
+
+## If no Nickname or ContactInfo is set, docker-entrypoint will use
+## the environment variables to add Nickname/ContactInfo below
+Nickname dockBridge                 # only use letters and numbers
+ContactInfo chris.bensch@gmail.com
