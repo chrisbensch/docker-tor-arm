@@ -1,6 +1,6 @@
 # Dockerfile for Tor Relay Server with obfs4proxy (Multi-Stage build)
 #FROM raspbian/stretch
-FROM balenalib/raspberrypi4-64-debian
+FROM balenalib/raspberrypi3-debian
 
 LABEL maintainer="chris.bensch@gmail.com"
 
